@@ -1,0 +1,30 @@
+﻿.pagination {
+    padding: 10px 20px;
+}
+
+.container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: #636f9c;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    button:hover {
+        cursor: pointer;
+        background-color: lightblue;
+    }
+
+.disabled {
+    background-color: darkcyan;
+    pointer-events: none;
+}

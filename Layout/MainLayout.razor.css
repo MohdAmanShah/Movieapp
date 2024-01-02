@@ -1,0 +1,21 @@
+.appbody {
+    display: flex;
+    flex-direction: column;
+    width: 1320px;
+    margin: 0 auto;
+}
+
+.header {
+    flex: 0 1 10%;
+    padding: 20px;
+}
+
+.content {
+    flex: 1 1 80%;
+    padding: 20px;
+}
+
+.footer {
+    flex: 0 1 10%;
+    padding: 20px;
+}

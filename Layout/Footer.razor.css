@@ -1,0 +1,21 @@
+﻿.foot{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+.built strong{
+    margin-left: 5px;
+}
+.attr a{
+    text-decoration: none;
+    color: red;
+}
+.attr a:visited{
+    color: red;
+}
+.poweredBy img{
+    width: 100px;
+    height: auto;
+}

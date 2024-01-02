@@ -1,0 +1,53 @@
+﻿.banner .title{
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    width: 70%;
+}
+.imageHolder img {
+    width: 275px;
+    border-radius: 20px;
+}
+.movieDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.links{
+    display: flex;
+    gap: 10px;
+}
+
+.linkimdb {
+    padding: 10px 20px;
+    background-color: #f5c518;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+.linkimdb:hover{
+    background-color: #f5c5188c;
+}
+
+.linkHomepage{
+    padding: 10px 20px;
+    background-color: forestgreen;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+    .linkHomepage:hover {
+        background-color: #228b228f;
+    }
+
+.overview{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}

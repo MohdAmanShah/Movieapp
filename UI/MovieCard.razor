@@ -1,0 +1,35 @@
+﻿@using MoiveApp.Models
+@inject IJSRuntime JS
+@inject NavigationManager nav
+@if (Movie is null)
+{
+    <div class="movieCard">
+        <img src="https://via.placeholder.com/177x263" />
+    </div>
+}
+else
+{
+    <div class="movieCard" @ref=posterCardElement>
+        <NavLink  @onclick="MovieDetailsPage">
+            @if (string.IsNullOrEmpty(Movie.PosterPath))
+            {
+                <img class="card-img-top" alt="Movie Poster" src="https://via.placeholder.com/177x263" />
+            }
+            else
+            {
+                <img width="250px" height="400px" class="card-img-top" alt="Movie Poster" src="@($"https://image.tmdb.org/t/p/w500/{Movie.PosterPath}")" />
+            }
+        </NavLink>
+    </div>
+}
+@code {
+    private ElementReference posterCardElement;
+    [Parameter]
+    public PopularMovie? Movie { get; set; }
+
+    public void MovieDetailsPage()
+    {
+        Console.WriteLine(Movie.Id);
+        nav.NavigateTo($"/MovieDetails/{Movie.Id}");   
+    }
+}

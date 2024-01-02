@@ -1,0 +1,84 @@
+﻿@page "/Moviedetails/{Id:int}"
+@inject TMDBClient client
+@if (Movie is null)
+{
+    <p>Movie is loading...</p>
+}
+else
+{
+    <PageTitle>@Movie.Title</PageTitle>
+    <div class="banner">
+        <h1 class="title">@Movie.Title</h1>
+        <div class="container">
+            <div class="imageHolder">
+                @if (string.IsNullOrEmpty(Movie.PosterPath))
+                {
+                    <img src="https://via.placeholder.com/177x263" alt="Movie Poster" />
+                }
+                else
+                {
+                    <img src="@($"https://image.tmdb.org/t/p/w500/{Movie.PosterPath}")" alt="Movie Poster" />
+                }
+            </div>
+            <div class="movieDetails">
+                <div class="linkContainer">
+                    <div class="links">
+
+                        @if (!string.IsNullOrEmpty(Movie.Homepage))
+                        {
+                            <a class="linkHomepage" href="@Movie.Homepage" target="_blank">
+                                Website
+                            </a>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Movie.ImdbId))
+                        {
+                            <a href="@($"https://www.imdb.com/title/{Movie.ImdbId}")" target="_blank" class="linkimdb">
+                                IMDB
+                            </a>
+                        }
+                    </div>
+                </div>
+                <p class="overview">@Movie.Overview</p>
+                @if (DateTime.TryParse(Movie.ReleaseDate, out DateTime releaseDate))
+                {
+                    <div>
+                        <strong>Release Date: </strong>
+                        <span>@releaseDate.ToString("MMM dd, yyy")</span>
+                    </div>
+                }
+                @{
+                    var runtime = $"{Movie.Runtime / 60} hours {Movie.Runtime % 60} minutes";
+                    var rating = (Movie.VoteAverage * 10).ToString("F1");
+                }
+                <div>
+                    <strong>Runtime: </strong> <span class="">@runtime</span>
+                </div>
+                <div>
+                    <strong>Rating: </strong> <strong style="color:red" class="">@rating%</strong>
+                </div>
+                <div class="">
+                    <div class="">
+
+
+                        @if (Movie.SpokenLanguages.Any())
+                        {
+                            <div>
+                                <strong>Languages: </strong> @string.Join(", ", Movie.SpokenLanguages.Select(sl => sl.EnglishName))
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@code {
+    [Parameter] public int Id { get; set; }
+    private MovieApp.Models.MovieDetails? Movie { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        Movie = await client.GetMovieDetailsAsync(Id);
+    }
+}

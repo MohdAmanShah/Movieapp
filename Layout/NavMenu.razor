@@ -1,0 +1,25 @@
+﻿@inject NavigationManager nav
+<nav class="navigation">
+    <div class="navbar-brand">
+        <NavLink class="nav-link" href="">The<br />Movie<br />Watcher<br /></NavLink>
+    </div>
+    <div class="nav-items">
+        <form method="post" @onsubmit="Submit">
+            <AntiforgeryToken />
+            <input @bind-value="Form!.query" class="searchBox" type="text" placeholder="🔍 Search a movie or a series" />
+            <button type="submit" hidden></button>
+        </form>
+    </div>
+</nav>
+@code {
+    [SupplyParameterFromForm] public FormClass? Form { get; set; }
+    protected override void OnInitialized() => Form ??= new();
+    public void Submit()
+    {
+        nav.NavigateTo($"/search/{Form.query}");
+    }
+    public class FormClass
+    {
+        public string? query { get; set; }
+    }
+}

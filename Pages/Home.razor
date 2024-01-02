@@ -1,0 +1,57 @@
+﻿@page "/"
+@using MoiveApp.Models
+@inject TMDBClient client
+@inject NavigationManager Nav
+<PageTitle>Home</PageTitle>
+<section class="content">
+    <h3 class="heading">Popular Movies</h3>
+    <div class="cards">
+        @if (movies is not null)
+        {
+            @foreach (PopularMovie movie in movies.Results)
+            {
+                <div class="col">
+                    <MovieCard Movie="movie" />
+                </div>
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                <div class="col">
+                    <MovieCard />
+                </div>
+            }
+        }
+    </div>
+    @if (movies?.TotalPages > 1)
+    {
+        <div class="pagination">
+            <Pagination CurrentPage="movies.Page"
+                        TotalPages="movies.TotalPages > 500 ? 500 : movies.TotalPages"
+                        OnPageChange="GetPage" />
+        </div>
+    }
+</section>
+
+@code {
+    private PopularMoviePagedResponse? movies;
+
+    [SupplyParameterFromQuery]
+    public int Page { get; set; } = 1;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Page < 1) Page = 1;
+        else if (Page > 500) Page = 500;
+
+        movies = await client.GetPopularMoviesAsync(Page);
+    }
+
+    private void GetPage(int pageNum)
+    {
+        string url = Nav.GetUriWithQueryParameter("page", pageNum);
+        Nav.NavigateTo(url);
+    }
+}
