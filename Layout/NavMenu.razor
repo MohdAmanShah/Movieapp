@@ -16,7 +16,9 @@
     protected override void OnInitialized() => Form ??= new();
     public void Submit()
     {
-        nav.NavigateTo($"/search/{Form.query}");
+        string url = nav.BaseUri;
+        Console.WriteLine(url);
+        nav.NavigateTo(url + $"search/{Form.query}");
     }
     public class FormClass
     {
