@@ -3,14 +3,14 @@
 @inject TMDBClient client
 @inject NavigationManager Nav
 <PageTitle>Home</PageTitle>
-<section class="content">
+<section class="container-fluid">
     <h3 class="heading">Popular Movies</h3>
-    <div class="cards">
+    <div class="cards d-flex flex-row row-cols-xl-4 row-cols-xxl-5 flex-wrap row-cols-3">
         @if (movies is not null)
         {
             @foreach (PopularMovie movie in movies.Results)
             {
-                <div class="col">
+                <div class="cardd">
                     <MovieCard Movie="movie" />
                 </div>
             }
@@ -19,7 +19,7 @@
         {
             for (int i = 0; i < 10; i++)
             {
-                <div class="col">
+                <div class="cardd">
                     <MovieCard />
                 </div>
             }

@@ -4,14 +4,14 @@
 @inject NavigationManager Nav
 
 <PageTitle>Search - @query</PageTitle>
-<section class="content">
+    <section class="container-fluid">
         <h3 class="heading">Showing results for "@query"  </h3>
-    <div class="cards">
+    <div class="cards d-flex flex-row row-cols-xl-4 row-cols-xxl-5 flex-wrap row-cols-3">
         @if (movies is not null)
         {
             @foreach (PopularMovie movie in movies.Results)
             {
-                <div class="col">
+                <div class="cardd">
                     <MovieCard Movie="movie" />
                 </div>
             }
@@ -20,7 +20,7 @@
         {
             for (int i = 0; i < 10; i++)
             {
-                <div class="col">
+                <div class="cardd">
                     <MovieCard />
                 </div>
             }
@@ -48,7 +48,7 @@
         if (Page < 1) Page = 1;
         else if (Page > 500) Page = 500;
 
-        movies = await client.GetSearchedMovie(query,Page);
+        movies = await client.GetSearchedMovie(query, Page);
     }
 
     private void GetPage(int pageNum)

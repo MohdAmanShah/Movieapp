@@ -7,10 +7,12 @@
 else
 {
     <PageTitle>@Movie.Title</PageTitle>
-    <div class="banner">
-        <h1 class="title">@Movie.Title</h1>
-        <div class="container">
-            <div class="imageHolder">
+    <div class="container-fluid">
+        <div class="container-fluid d-flex align-items-center justify-content-center justify-content-md-start">
+            <h1 class="heading">@Movie.Title</h1>
+        </div>
+        <div class="container-fluid d-flex flex-column flex-md-row justify-content-center justify-content-md-start">
+            <div class="imageHolder mb-2 d-flex align-items-center justify-content-center">
                 @if (string.IsNullOrEmpty(Movie.PosterPath))
                 {
                     <img src="https://via.placeholder.com/177x263" alt="Movie Poster" />

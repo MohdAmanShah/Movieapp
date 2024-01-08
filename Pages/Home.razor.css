@@ -1,25 +1,26 @@
 ﻿.heading {
     color: black;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    word-wrap: break-word;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 .cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
-.col{
-    flex: 0 1 19%;
-    margin-bottom: 2px;
-}
-.col:hover{
+.cardd:hover {
     cursor: pointer;
 }
-.pagination{
+
+.pagination {
     margin-top: 10px;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 300px) {
+    .cardd{
+        width: 50%;
+        border:none;
+    }
 }
