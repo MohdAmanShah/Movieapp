@@ -74,11 +74,3 @@ h1:focus {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
-
-/*Custom css*/
-
-body{
-    background-color: #ebeaea;
-}
-#app{
-}
